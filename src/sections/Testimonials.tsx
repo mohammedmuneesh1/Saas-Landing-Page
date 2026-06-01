@@ -7,7 +7,8 @@ import avatar6 from "@/assets/avatar-6.png";
 import avatar7 from "@/assets/avatar-7.png";
 import avatar8 from "@/assets/avatar-8.png";
 import avatar9 from "@/assets/avatar-9.png";
-
+import Image from "next/image";
+import {twMerge} from "tailwind-merge";
 const testimonials = [
   {
     text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
@@ -65,6 +66,90 @@ const testimonials = [
   },
 ];
 
-export const Testimonials = () => {
-  return null;
+ const Testimonials = () => {
+  return (
+    <section className="custom-layout bg-white ">
+      <div className="section-heading-width flex flex-col items-center">
+        <h2 className="tag">Testimonials</h2>
+        <p className="section-description mt-5">From ituitive design to powerful features, our app has become an essential
+           tool for users around the world.
+        </p>
+      </div>
+
+
+
+<div className="flex justify-center gap-6 ">
+     {/*FIRST COLUMN ITEM */}
+     <TestimonialColumn columnData={firstColumn} />
+     <TestimonialColumn columnData={secondColumn}
+     className="hidden md:flex"
+     />
+     <TestimonialColumn
+      columnData={thirdColumn} 
+     className="hidden lg:flex"
+     />
+   {/*FIRST COLUMN ITEM */}
+
+</div>
+
+
+    </section>
+  )
 };
+
+export default Testimonials;
+
+
+
+const firstColumn = testimonials.slice(0,3);
+const secondColumn = testimonials.slice(3,6);
+const thirdColumn = testimonials.slice(6,9);
+
+
+
+
+
+
+
+//eslint-disable-next-line
+const TestimonialColumn =  ({
+  columnData,
+  className
+}: {
+  columnData: any[];
+  className?: string
+})=>{
+  return(
+  <div className={
+    twMerge(
+      "flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,_transparent,_black_25%,_black_75%,_transparent)]"
+      ,
+      className
+    )
+    
+   }>
+        {columnData?.map((col1,index)=>(
+          <div
+          key={index}
+          className="card">
+            <h3>{col1.text}</h3>
+            <div className="flex items-center gap-2 mt-5">
+              <Image 
+              src={col1.imageSrc} 
+              alt={col1.name}
+              width={40}
+              height={40} 
+              className=" rounded-full" 
+              />
+            <div className="flex flex-col">
+              <h4 className="font-medium tracking-tight leading-5">{col1.name}</h4>
+              <h4
+              className="tracking-tight leading-5"
+              >{col1.username}</h4>
+            </div>
+            </div>
+          </div>
+        ))}
+</div>
+  )
+}

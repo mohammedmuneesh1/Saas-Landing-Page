@@ -1,3 +1,4 @@
+"use client"
 import ArrowIcon from "@/assets/arrow-right.svg"
 import Image from "next/image";
 import cogImage from "@/assets/cog.png"
@@ -22,7 +23,7 @@ export const Hero = () => {
 
 {/*VERSION + TEXT + BUTTON START */}
 <div className="md:max-w-[598px] w-full shrink">
-  <h3 className=' text-sm inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight'>Version 2.0 is here </h3>
+  <h3 className='tag'>Version 2.0 is here </h3>
   <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[84px]  xl:text-8xl   font-bold tracking-tighter
   bg-gradient-to-b from-black to-blue-600 text-transparent bg-clip-text mt-6
   ">Pathway to Productivity</h1>
