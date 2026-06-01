@@ -6,7 +6,17 @@ import Image from "next/image";
 
 export const Header = () => {
   return (
-    <header className=" sticky top-0 z-50 ">
+    <header
+      className="
+    sticky
+    top-0
+    z-50
+    backdrop-blur-md
+    bg-white/10
+    border-b
+    border-white/20
+  "
+    >
 
 {/* TOP BLACK BANNER START*/}
     <div className="w-full flex justify-center items-center py-3 bg-black text-white text-sm gap-3 capitalize">

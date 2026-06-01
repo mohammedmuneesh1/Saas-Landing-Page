@@ -1,3 +1,4 @@
+"use client"
 import avatar1 from "@/assets/avatar-1.png";
 import avatar2 from "@/assets/avatar-2.png";
 import avatar3 from "@/assets/avatar-3.png";
@@ -9,6 +10,11 @@ import avatar8 from "@/assets/avatar-8.png";
 import avatar9 from "@/assets/avatar-9.png";
 import Image from "next/image";
 import {twMerge} from "tailwind-merge";
+import {motion} from "framer-motion"
+import React from "react";
+
+
+
 const testimonials = [
   {
     text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
@@ -78,15 +84,16 @@ const testimonials = [
 
 
 
-<div className="flex justify-center gap-6 ">
+<div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,_transparent,_black_25%,_black_75%,_transparent)] max-h-[738px] overflow-hidden">
      {/*FIRST COLUMN ITEM */}
-     <TestimonialColumn columnData={firstColumn} />
-     <TestimonialColumn columnData={secondColumn}
-     className="hidden md:flex"
+     <TestimonialColumn columnData={firstColumn} duration={15}/>
+     <TestimonialColumn columnData={secondColumn } duration={19}
+     className="hidden md:block"
      />
      <TestimonialColumn
       columnData={thirdColumn} 
-     className="hidden lg:flex"
+      duration={17}
+     className="hidden lg:block"
      />
    {/*FIRST COLUMN ITEM */}
 
@@ -114,20 +121,31 @@ const thirdColumn = testimonials.slice(6,9);
 //eslint-disable-next-line
 const TestimonialColumn =  ({
   columnData,
-  className
+  className,
+  duration = 5,
 }: {
   columnData: any[];
-  className?: string
+  className?: string;
+  duration?:number;
 })=>{
   return(
-  <div className={
-    twMerge(
-      "flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,_transparent,_black_25%,_black_75%,_transparent)]"
-      ,
-      className
-    )
-    
-   }>
+    <div className={className ?? ""}>
+
+  <motion.div 
+  animate={{
+    translateY:"-50%",
+  }}
+  transition={{
+    repeat:Infinity,
+    ease:"linear",
+    repeatType:"loop",
+    duration:duration,
+  }}
+  
+  className="flex flex-col gap-6 pb-6">
+    {
+      [... new Array(2)].map((_,index)=>(
+        <React.Fragment key={index}>
         {columnData?.map((col1,index)=>(
           <div
           key={index}
@@ -150,6 +168,11 @@ const TestimonialColumn =  ({
             </div>
           </div>
         ))}
-</div>
+        </React.Fragment>
+      ))
+    }
+</motion.div>
+    </div>
+
   )
 }

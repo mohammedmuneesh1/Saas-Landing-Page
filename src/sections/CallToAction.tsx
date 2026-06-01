@@ -1,11 +1,29 @@
+"use client"
 import ArrowRight from "@/assets/arrow-right.svg";
 import Image from "next/image";
 import starImage from "@/assets/star.png";
 import springImage from "@/assets/spring.png";
+import {motion, useScroll, useTransform} from "framer-motion"
+import { useRef } from "react";
 
 export const CallToAction = () => {
+
+const sectionRef = useRef<null | HTMLDivElement>(null);
+const {scrollYProgress} = useScroll({
+  target:sectionRef,
+  offset:["start end","end start"] 
+})
+ const translateY = useTransform(scrollYProgress,[0,1],[150,-150])
+
+
+
+
+
+
   return (
-    <section className="custom-layout 
+    <section
+     ref={sectionRef}
+    className="custom-layout 
     bg-gradient-to-b
      from white to-[#D2DCFF]  
      py-18 sm:py-24 overflow-x-clip
@@ -20,16 +38,18 @@ export const CallToAction = () => {
           your progress and motivate your efforts
         </p>
 
-        <Image
-         src={starImage}
+        <motion.img
+         src={starImage?.src}
           alt="spring image"
           width={300}
           className="hidden md:block  absolute -left-[350px] -top-[137px]"
+          style={{ translateY }}
         />
-        <Image
-         src={springImage}
+        <motion.img
+         src={springImage?.src}
           alt="spring image"
           width={300}
+          style={{ translateY }}
           className="hidden md:block absolute -right-[331px] -top-[19px]"
         />
 

@@ -1,11 +1,32 @@
+"use client"
 import ProductImage from "@/assets/product-image.png";
 import pyramidImage from "@/assets/pyramid.png";
 import tubeImage from "@/assets/tube.png"
 import Image from "next/image";
+import {motion,useScroll, useTransform} from "framer-motion"
+import { useRef } from "react";
+
 
 const ProductShowcase = () => {
+
+
+const sectionRef = useRef<null | HTMLDivElement>(null);
+const {scrollYProgress} = useScroll({
+  target:sectionRef,
+  offset:["start end","end start"] 
+})
+
+ const translateY = useTransform(scrollYProgress,[0,1],[150,-150])
+
+
+  
+
   return (
-    <section className="py-16 md:py-24  bg-gradient-to-b from-[#FFFFFF] to-[#D2DCFF] overflow-hidden">
+
+
+    <section 
+    ref={sectionRef}
+    className="py-16 md:py-24  bg-gradient-to-b from-[#FFFFFF] to-[#D2DCFF] overflow-hidden">
       <div className="custom-layout ">
 
         <div
@@ -30,23 +51,29 @@ className=""
 // className="w-full h-auto mt-10 rounded-lg shadow-lg"
 />
 
-<Image
- src={pyramidImage}
+<motion.img
+ src={pyramidImage?.src}
 alt="Product Image"
 loading="eager"
-height={200}
+height={268}
+width={268}
 className="hidden md:block absolute -right-36 -top-32"  
-
+  style={{
+    translateY:translateY,
+  }}
 />
 
 
-<Image
- src={tubeImage}
+<motion.img
+ src={tubeImage?.src}
 alt="tube Image"
 loading="eager"
-height={200}
+height={248}
+width={248}
 className="hidden md:block absolute bottom-24 -left-36"  
-
+  style={{
+    translateY:translateY,
+  }}
 />
         </div>
 
