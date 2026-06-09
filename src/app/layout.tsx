@@ -6,8 +6,8 @@ import clsx from "clsx";
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Light Saas Landing Page",
-  description: "Template created by Frontend Tribe",
+  title: "LaunchFlow",
+  description: "LaunchFlow is an all-in-one SaaS platform designed to help businesses streamline workflows, automate repetitive tasks, and accelerate growth. From project management to team collaboration, LaunchFlow provides the tools modern teams need to launch, manage, and scale efficiently.",
 };
 
 export default function RootLayout({
